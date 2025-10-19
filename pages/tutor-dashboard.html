@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Dashboard - EduConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <nav class="dashboard-nav">
+                <div class="dashboard-logo">
+                    <h2>EduConnect</h2>
+                </div>
+                <div class="dashboard-user">
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Loading...</div>
+                        <div class="user-role">Tutor</div>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">T</div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Welcome Section -->
+            <section class="dashboard-welcome">
+                <h1>Welcome back, Tutor!</h1>
+                <p>Ready to inspire your next student?</p>
+            </section>
+
+            <!-- Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalStudents">0</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedSessions">0</div>
+                    <div class="stat-label">Sessions Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="earnings">$0</div>
+                    <div class="stat-label">Total Earnings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="rating">5.0</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+
+            <!-- Main Sections -->
+            <div class="dashboard-sections">
+                <!-- Left Column -->
+                <div class="left-column">
+                    <!-- Today's Sessions -->
+                    <section class="upcoming-sessions">
+                        <div class="section-header">
+                            <h3>Today's Sessions</h3>
+                            <button class="btn btn-primary" onclick="openAvailabilityModal()">Set Availability</button>
+                        </div>
+                        <div class="session-list" id="todaysSessions">
+                            <!-- Sessions will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Session Requests -->
+                    <section class="session-requests">
+                        <div class="section-header">
+                            <h3>Session Requests</h3>
+                        </div>
+                        <div class="requests-list" id="sessionRequests">
+                            <!-- Requests will be populated by JavaScript -->
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Column -->
+                <div class="right-column">
+                    <!-- Quick Actions -->
+                    <section class="quick-actions">
+                        <div class="action-card" onclick="startVideoCall()">
+                            <div class="action-icon">🎥</div>
+                            <h4>Start Session</h4>
+                            <p>Begin video call</p>
+                        </div>
+                        <div class="action-card" onclick="openAvailabilityModal()">
+                            <div class="action-icon">📅</div>
+                            <h4>Set Availability</h4>
+                            <p>Update your schedule</p>
+                        </div>
+                        <div class="action-card" onclick="openStudentsList()">
+                            <div class="action-icon">👥</div>
+                            <h4>My Students</h4>
+                            <p>View student profiles</p>
+                        </div>
+                        <div class="action-card" onclick="openEarnings()">
+                            <div class="action-icon">💰</div>
+                            <h4>Earnings</h4>
+                            <p>View payments</p>
+                        </div>
+                    </section>
+
+                    <!-- Your Students -->
+                    <section class="available-tutors">
+                        <div class="section-header">
+                            <h3>Your Students</h3>
+                        </div>
+                        <div class="tutor-list" id="studentsList">
+                            <!-- Students will be populated by JavaScript -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Video Call Interface -->
+    <div id="videoCallModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3>Live Session - Mathematics</h3>
+                <button class="close-modal" onclick="endVideoCall()">&times;</button>
+            </div>
+            <div class="video-container">
+                <div class="video-placeholder">
+                    Live Video Feed - Zoom Integration
+                </div>
+                <div class="video-controls">
+                    <button class="control-btn">🎤</button>
+                    <button class="control-btn">📹</button>
+                    <button class="control-btn">🖥️</button>
+                    <button class="control-btn">💬</button>
+                    <button class="control-btn end-call" onclick="endVideoCall()">📞</button>
+                </div>
+            </div>
+            <div class="session-info">
+                <p><strong>Student:</strong> John Smith</p>
+                <p><strong>Subject:</strong> Advanced Calculus</p>
+                <p><strong>Duration:</strong> 1 hour</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Availability Modal -->
+    <div id="availabilityModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Set Your Availability</h3>
+                <button class="close-modal" onclick="closeAvailabilityModal()">&times;</button>
+            </div>
+            <form id="availabilityForm">
+                <div class="form-group">
+                    <label>Working Hours</label>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="time" id="startTime" value="09:00" required>
+                        <span>to</span>
+                        <input type="time" id="endTime" value="17:00" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Available Days</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                        <label><input type="checkbox" name="days" value="monday" checked> Monday</label>
+                        <label><input type="checkbox" name="days" value="tuesday" checked> Tuesday</label>
+                        <label><input type="checkbox" name="days" value="wednesday" checked> Wednesday</label>
+                        <label><input type="checkbox" name="days" value="thursday" checked> Thursday</label>
+                        <label><input type="checkbox" name="days" value="friday" checked> Friday</label>
+                        <label><input type="checkbox" name="days" value="saturday"> Saturday</label>
+                        <label><input type="checkbox" name="days" value="sunday"> Sunday</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subjectsTaught">Subjects You Teach</label>
+                    <input type="text" id="subjectsTaught" required>
+                </div>
+                <div class="form-group">
+                    <label for="hourlyRate">Hourly Rate ($)</label>
+                    <input type="number" id="hourlyRate" min="0" step="0.01" required>
+                </div>
+                <button type="submit" class="btn btn-full">Save Availability</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

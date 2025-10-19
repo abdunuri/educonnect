@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - EduConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <nav class="dashboard-nav">
+                <div class="dashboard-logo">
+                    <h2>EduConnect</h2>
+                </div>
+                <div class="dashboard-user">
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Loading...</div>
+                        <div class="user-role">Student</div>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">S</div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Welcome Section -->
+            <section class="dashboard-welcome">
+                <h1>Welcome back!</h1>
+                <p>Continue your learning journey with expert tutors</p>
+            </section>
+
+            <!-- Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="completedSessions">0</div>
+                    <div class="stat-label">Sessions Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="upcomingSessions">0</div>
+                    <div class="stat-label">Upcoming Sessions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="hoursLearned">0</div>
+                    <div class="stat-label">Hours Learned</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeTutors">0</div>
+                    <div class="stat-label">Active Tutors</div>
+                </div>
+            </div>
+
+            <!-- Main Sections -->
+            <div class="dashboard-sections">
+                <!-- Left Column -->
+                <div class="left-column">
+                    <!-- Upcoming Sessions -->
+                    <section class="upcoming-sessions">
+                        <div class="section-header">
+                            <h3>Upcoming Sessions</h3>
+                            <button class="btn btn-primary" onclick="openScheduleModal()">Schedule New</button>
+                        </div>
+                        <div class="session-list" id="upcomingSessionList">
+                            <!-- Sessions will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Available Tutors -->
+                    <section class="available-tutors">
+                        <div class="section-header">
+                            <h3>Available Tutors</h3>
+                        </div>
+                        <div class="tutor-list" id="availableTutorsList">
+                            <!-- Tutors will be populated by JavaScript -->
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Column -->
+                <div class="right-column">
+                    <!-- Quick Actions -->
+                    <section class="quick-actions">
+                        <div class="action-card" onclick="openScheduleModal()">
+                            <div class="action-icon">📅</div>
+                            <h4>Schedule Session</h4>
+                            <p>Book a new learning session</p>
+                        </div>
+                        <div class="action-card" onclick="openFindTutors()">
+                            <div class="action-icon">👨‍🏫</div>
+                            <h4>Find Tutors</h4>
+                            <p>Browse available tutors</p>
+                        </div>
+                        <div class="action-card" onclick="openResources()">
+                            <div class="action-icon">📚</div>
+                            <h4>Learning Resources</h4>
+                            <p>Access study materials</p>
+                        </div>
+                        <div class="action-card" onclick="openSettings()">
+                            <div class="action-icon">⚙️</div>
+                            <h4>Settings</h4>
+                            <p>Manage your account</p>
+                        </div>
+                    </section>
+
+                    <!-- Recent Activity -->
+                    <section class="upcoming-sessions">
+                        <div class="section-header">
+                            <h3>Recent Activity</h3>
+                        </div>
+                        <div class="session-list" id="recentActivity">
+                            <!-- Activity will be populated by JavaScript -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Schedule Session Modal -->
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Schedule New Session</h3>
+                <button class="close-modal" onclick="closeScheduleModal()">&times;</button>
+            </div>
+            <form id="scheduleForm">
+                <div class="form-group">
+                    <label for="tutorSelect">Select Tutor</label>
+                    <select id="tutorSelect" required>
+                        <option value="">Choose a tutor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sessionDate">Date</label>
+                    <input type="date" id="sessionDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="sessionTime">Time</label>
+                    <input type="time" id="sessionTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="sessionDuration">Duration (hours)</label>
+                    <select id="sessionDuration" required>
+                        <option value="1">1 hour</option>
+                        <option value="1.5">1.5 hours</option>
+                        <option value="2">2 hours</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sessionSubject">Subject</label>
+                    <input type="text" id="sessionSubject" required>
+                </div>
+                <button type="submit" class="btn btn-full">Schedule Session</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

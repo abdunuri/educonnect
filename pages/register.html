@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - EduConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Join EduConnect</h1>
+                <p>Create your account to start learning or teaching</p>
+            </div>
+            
+            <form id="registerForm">
+                <div class="role-selection">
+                    <label class="role-option" onclick="selectRole('student')">
+                        <input type="radio" name="role" value="student" required>
+                        <h3>Student</h3>
+                        <p>I want to learn</p>
+                    </label>
+                    <label class="role-option" onclick="selectRole('tutor')">
+                        <input type="radio" name="role" value="tutor" required>
+                        <h3>Tutor</h3>
+                        <p>I want to teach</p>
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required minlength="6">
+                </div>
+                
+                <div class="form-group" id="subjectField" style="display: none;">
+                    <label for="subjects">Subjects You Teach</label>
+                    <input type="text" id="subjects" name="subjects" placeholder="e.g., Math, Physics, English">
+                </div>
+                
+                <div class="form-group" id="hourlyRateField" style="display: none;">
+                    <label for="hourlyRate">Hourly Rate ($)</label>
+                    <input type="number" id="hourlyRate" name="hourlyRate" min="0" step="0.01">
+                </div>
+                
+                <button type="submit" class="btn btn-full">Create Account</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="login.html">Sign in here</a></p>
+                <p><a href="../index.html">← Back to Home</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+</body>
+</html>
